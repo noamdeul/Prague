@@ -338,6 +338,85 @@ function getStationStatusLabel(station) {
 
 function renderStations() {
   const container = document.getElementById("stationsList");
+  if (!container) {
+    console.error('Missing element: #stationsList');
+    return;
+  }
+
+  container.innerHTML = "";
+
+  stations.forEach((station) => {
+    const card = document.createElement("article");
+    card.className = "station-card";
+
+    const status = getStationStatusLabel(station);
+    const completed = isCompleted(station.id);
+    const bonus = hasBonus(station.id);
+    const skipped = isSkipped(station.id);
+
+    card.innerHTML = `
+      <button class="accordion-toggle" id="toggle-${station.id}" aria-expanded="false" type="button">
+        <span class="station-title-wrap">
+          <span class="station-title">${station.title}</span>
+          <span class="station-meta">${station.place} · ${station.time}</span>
+        </span>
+        <span class="station-status ${completed ? "done" : skipped ? "skipped" : ""}">${status}</span>
+      </button>
+
+      <div class="accordion-panel" id="panel-${station.id}">
+        <div class="station-content">
+          <p><strong>מקום:</strong> ${station.place}</p>
+          <p><strong>זמן משוער:</strong> ${station.time}</p>
+          <p><strong>סוג:</strong> ${station.type}</p>
+          <p><strong>מה להקריא לילדים:</strong><br>${station.readAloud}</p>
+          <p><strong>מה עושים:</strong><br>${station.task}</p>
+          <p><strong>מה נחשב הצלחה:</strong><br>${station.success}</p>
+          <p><strong>בונוס:</strong><br>${station.bonus}</p>
+
+          <div class="actions">
+            <button class="btn btn-primary" data-action="complete" data-id="${station.id}" ${completed ? "disabled" : ""} type="button">
+              סיימנו את המשימה (+${station.reward})
+            </button>
+            <button class="btn btn-secondary" data-action="bonus" data-id="${station.id}" ${bonus ? "disabled" : ""} type="button">
+              קיבלנו בונוס (+${station.bonusReward})
+            </button>
+            <button class="btn btn-muted" data-action="skip" data-id="${station.id}" ${completed || skipped ? "disabled" : ""} type="button">
+              דילגנו
+            </button>
+          </div>
+
+          <div class="stars-row">
+            <span>כוכב אישי:</span>
+            <button class="btn btn-star" data-action="star" data-child="child1" type="button">ילד 1 ⭐</button>
+            <button class="btn btn-star" data-action="star" data-child="child2" type="button">ילד 2 ⭐</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(card);
+
+    const toggle = card.querySelector(".accordion-toggle");
+    toggle.addEventListener("click", () => toggleAccordion(station.id));
+
+    card.querySelectorAll("[data-action]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const action = button.dataset.action;
+        const id = Number(button.dataset.id);
+        const child = button.dataset.child;
+
+        if (action === "complete") completeStation(id);
+        if (action === "bonus") awardBonus(id);
+        if (action === "skip") skipStation(id);
+        if (action === "star") awardStar(child);
+      });
+    });
+  });
+}
+
+function renderStations1() {
+  const container = document.getElementById("stationsList");
   container.innerHTML = "";
 
   stations.forEach((station) => {
