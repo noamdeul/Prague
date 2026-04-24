@@ -1,0 +1,10 @@
+{
+  "name": "סוד הכתר האבוד של פראג",
+  "short_name": "כתר פראג",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f7f2ea",
+  "theme_color": "#5c3b1e"
+}

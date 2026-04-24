@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5c3b1e" />
+  <title>סוד הכתר האבוד של פראג</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">חפש את המטמון המשפחתי</p>
+      <h1>סוד הכתר האבוד של פראג</h1>
+      <p class="lead">
+        אתר משחק פשוט לטיול יום שישי בפראג. פותחים בטלפון, משחקים תוך כדי הליכה,
+        שומרים ניקוד והתקדמות, וממשיכים מאותה נקודה גם אם סוגרים את הדפדפן.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#intro">התחל משחק</a>
+        <a class="btn btn-secondary" href="#instructions">איך משחקים</a>
+        <button id="reset-top-btn" class="btn btn-danger" type="button">איפוס משחק</button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="scoreboard" aria-label="לוח ניקוד">
+    <div class="score-card">
+      <span class="score-label">מטבעות</span>
+      <strong id="coins-count">0</strong>
+    </div>
+    <div class="score-card">
+      <span class="score-label">כוכבים ילד 1</span>
+      <strong id="child1-stars">0</strong>
+    </div>
+    <div class="score-card">
+      <span class="score-label">כוכבים ילד 2</span>
+      <strong id="child2-stars">0</strong>
+    </div>
+    <div class="score-card">
+      <span class="score-label">תחנות הושלמו</span>
+      <strong id="completed-count">0 / 10</strong>
+    </div>
+    <div class="score-card score-card-wide">
+      <span class="score-label">רמת קושי</span>
+      <strong id="difficulty-badge">רגיל</strong>
+    </div>
+    <div class="progress-wrap" aria-label="התקדמות">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+  </aside>
+
+  <main class="container">
+    <section id="intro" class="panel">
+      <h2>סיפור המסגרת</h2>
+      <p>
+        לפני מאות שנים, שען-מלך מסתורי של פראג החביא בעיר 8 מפתחות סודיים.
+        הוא פחד שמישהו ישתמש בכוח של העיר העתיקה כדי לעצור את הזמן ולגנוב את הזיכרונות של פראג.
+      </p>
+      <p>
+        כדי למצוא את האוצר, צריך לעבור בין התחנות החשובות בעיר, לפתור משימות,
+        לאסוף מפתחות, ולהוכיח שאתם חדי עין, אמיצים, סקרנים, טובים בשיתוף פעולה,
+        וראויים לתואר שומרי פראג.
+      </p>
+      <p>
+        האוצר בסוף היום לא חייב להיות משהו שקונים. הוא יכול להיות בחירת הקינוח,
+        בחירת תחנת הגלידה, תואר משפחתי מצחיק, או פקודת ניצחון שתמציאו יחד.
+      </p>
+    </section>
+
+    <section id="instructions" class="panel">
+      <h2>איך משחקים</h2>
+      <div class="grid two-cols">
+        <div>
+          <h3>כללי המשחק</h3>
+          <ul>
+            <li>בכל תחנה יש משימה עיקרית, ולפעמים גם בונוס קטן.</li>
+            <li>כל הצלחה מזכה במטבעות מסע.</li>
+            <li>אפשר לסמן תחנה כהושלמה, בונוס, או דילוג.</li>
+            <li>אם מדלגים על תחנה, אפשר לבצע משימת גיבוי ולקבל 2 מטבעות.</li>
+            <li>המשחק גמיש, ולא חייבים לעבור בכל התחנות.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>שיטת ניקוד</h3>
+          <ul>
+            <li>משימה עיקרית: 3 מטבעות</li>
+            <li>בונוס: 1 מטבע</li>
+            <li>תשובה יצירתית / צילום מוצלח / שיתוף פעולה: לפי שיקול דעת ההורה</li>
+            <li>משימת גיבוי במקום תחנה שדולגה: 2 מטבעות</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid two-cols">
+        <div>
+          <h3>כוכבים אישיים</h3>
+          <p>
+            בכל תחנה אפשר להעניק כוכב אישי לילד 1 או לילד 2 על יצירתיות,
+            חדות, אומץ או שיתוף פעולה. הכוכבים לא באים במקום המטבעות, אלא בנוסף.
+          </p>
+        </div>
+        <div>
+          <h3>תפקידי המשחק</h3>
+          <ul>
+            <li>הנווט: מחזיק את המפה / גוגל מאפס</li>
+            <li>הבלש: מחפש פרטים קטנים</li>
+            <li>הכרוניקן: כותב תשובות וניקוד</li>
+            <li>ההורה: מנהל המשימה הראשי</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="difficulty" class="panel">
+      <h2>בחרו רמת קושי</h2>
+      <div class="difficulty-grid">
+        <button class="difficulty-btn" data-difficulty="קל" type="button">
+          <span>קל</span>
+          <small>רמזים מהר, אינטרנט זמין מיד, בלי לחץ זמן</small>
+        </button>
+        <button class="difficulty-btn active" data-difficulty="רגיל" type="button">
+          <span>רגיל</span>
+          <small>הכי מומלץ. מנסים לבד ואז בודקים</small>
+        </button>
+        <button class="difficulty-btn" data-difficulty="מאתגר" type="button">
+          <span>מאתגר</span>
+          <small>אין אינטרנט ב־2 הדקות הראשונות, יותר הסברים ויצירתיות</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="stations" class="panel">
+      <div class="section-head">
+        <h2>תחנות המשחק</h2>
+        <button id="finish-btn" class="btn btn-secondary" type="button">סיום המשחק</button>
+      </div>
+      <div id="stations-list" class="stations-list"></div>
+    </section>
+
+    <section id="backup-missions" class="panel">
+      <h2>משימות גיבוי</h2>
+      <div id="backup-list" class="cards-list"></div>
+    </section>
+
+    <section id="photo-missions" class="panel">
+      <h2>משימות צילום</h2>
+      <div id="photo-list" class="cards-list"></div>
+    </section>
+
+    <section id="tips" class="panel">
+      <h2>טיפים להורה</h2>
+      <div id="tips-list" class="cards-list"></div>
+    </section>
+
+    <section id="ending" class="panel ending-panel hidden" aria-live="polite">
+      <h2>סיום המשחק</h2>
+      <div class="ending-grid">
+        <div class="ending-box">
+          <span class="ending-label">סך המטבעות</span>
+          <strong id="ending-coins">0</strong>
+        </div>
+        <div class="ending-box">
+          <span class="ending-label">התואר המשפחתי</span>
+          <strong id="ending-title">—</strong>
+        </div>
+        <div class="ending-box">
+          <span class="ending-label">יותר כוכבים אישיים</span>
+          <strong id="ending-stars">—</strong>
+        </div>
+      </div>
+      <p id="ending-message" class="ending-message"></p>
+      <div class="treasure-box">
+        <h3>רעיונות לאוצר</h3>
+        <ul>
+          <li>בחירת הקינוח המשפחתי</li>
+          <li>בחירת תחנת הגלידה</li>
+          <li>תואר משפחתי מצחיק לכל אחד</li>
+          <li>כל אחד נותן תואר למישהו אחר</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>נבנה לטיול משפחתי בפראג. עובד מקומית וב־GitHub Pages.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
